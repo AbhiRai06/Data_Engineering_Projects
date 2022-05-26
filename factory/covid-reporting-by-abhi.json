@@ -1,0 +1,9 @@
+{
+	"name": "covid-reporting-by-abhi",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "930175f7-8b4f-45db-b784-1adb9b8747ac",
+		"tenantId": "87ab4829-8a6b-437a-ac98-4428247434f9"
+	}
+}
