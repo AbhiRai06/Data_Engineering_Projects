@@ -29,17 +29,17 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_hospital_admissions_weekly",
+						"referenceName": "ds_processed_hospital_admissions_weekly",
 						"type": "DatasetReference"
 					},
-					"name": "HospitalAdmissionsWeekly"
+					"name": "HospitalAdmissionsWeeklySink"
 				},
 				{
 					"dataset": {
-						"referenceName": "ds_hospital_admissions_daily",
+						"referenceName": "ds_processed_hospital_admissions_daily",
 						"type": "DatasetReference"
 					},
-					"name": "HospitalAdmissionsDaily"
+					"name": "HospitalAdmissionsDailySink"
 				}
 			],
 			"transformations": [
@@ -193,8 +193,8 @@
 				"          ecdc_year_week,",
 				"          week_start_date,",
 				"          week_end_date,",
-				"          Weekly_new_hospital_admissions_per_100k_count = {Weekly new hospital admissions per 100k_count},",
-				"          Weekly_new_ICU_admissions_per_100k_count = {Weekly new ICU admissions per 100k_count},",
+				"          new_hospital_occupancy_count = {Weekly new hospital admissions per 100k_count},",
+				"          new_ICU_occupancy_count = {Weekly new ICU admissions per 100k_count},",
 				"          source",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
@@ -205,24 +205,14 @@
 				"          country_code_3_digit,",
 				"          population,",
 				"          reported_date,",
-				"          Daily_hospital_occupancy_count = {Daily hospital occupancy_count},",
-				"          Daily_ICU_occupancy_count = {Daily ICU occupancy_count},",
+				"          hospital_occupancy_count = {Daily hospital occupancy_count},",
+				"          ICU_occupancy_count = {Daily ICU occupancy_count},",
 				"          source",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectDailyForSink",
 				"SelectWeeklyForSink sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          country as string,",
-				"          country_code_2_digit as string,",
-				"          country_code_3_digit as string,",
-				"          population as string,",
-				"          cases_count as string,",
-				"          deaths_count as string,",
-				"          reported_date as string,",
-				"          source as string",
-				"     ),",
 				"     partitionFileNames:['hospital_admissions_weekly.csv'],",
 				"     truncate: true,",
 				"     umask: 0022,",
@@ -230,19 +220,9 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> HospitalAdmissionsWeekly",
+				"     partitionBy('hash', 1)) ~> HospitalAdmissionsWeeklySink",
 				"SelectDailyForSink sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          country as string,",
-				"          country_code_2_digit as string,",
-				"          country_code_3_digit as string,",
-				"          population as string,",
-				"          cases_count as string,",
-				"          deaths_count as string,",
-				"          reported_date as string,",
-				"          source as string",
-				"     ),",
 				"     partitionFileNames:['hospital_admissions_daily.csv'],",
 				"     truncate: true,",
 				"     umask: 0022,",
@@ -250,7 +230,7 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> HospitalAdmissionsDaily"
+				"     partitionBy('hash', 1)) ~> HospitalAdmissionsDailySink"
 			]
 		}
 	}
