@@ -320,128 +320,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_hospital_admissions_daily')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_adls_covidreportingpro1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "ecdc/hospital_admissions",
-						"fileSystem": "processed"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "country",
-						"type": "String"
-					},
-					{
-						"name": "country_code_2_digit",
-						"type": "String"
-					},
-					{
-						"name": "country_code_3_digit",
-						"type": "String"
-					},
-					{
-						"name": "population",
-						"type": "String"
-					},
-					{
-						"name": "cases_count",
-						"type": "String"
-					},
-					{
-						"name": "deaths_count",
-						"type": "String"
-					},
-					{
-						"name": "reported_date",
-						"type": "String"
-					},
-					{
-						"name": "source",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adls_covidreportingpro1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_hospital_admissions_weekly')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_adls_covidreportingpro1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "ecdc/hospital_admissions",
-						"fileSystem": "processed"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "country",
-						"type": "String"
-					},
-					{
-						"name": "country_code_2_digit",
-						"type": "String"
-					},
-					{
-						"name": "country_code_3_digit",
-						"type": "String"
-					},
-					{
-						"name": "population",
-						"type": "String"
-					},
-					{
-						"name": "cases_count",
-						"type": "String"
-					},
-					{
-						"name": "deaths_count",
-						"type": "String"
-					},
-					{
-						"name": "reported_date",
-						"type": "String"
-					},
-					{
-						"name": "source",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adls_covidreportingpro1')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ds_population_raw_gz')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -515,6 +393,62 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"folderPath": "ecdc/cases_deaths",
+						"fileSystem": "processed"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_adls_covidreportingpro1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_processed_hospital_admissions_daily')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adls_covidreportingpro1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "ecdc/hospital_admissions",
+						"fileSystem": "processed"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_adls_covidreportingpro1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_processed_hospital_admissions_weekly')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adls_covidreportingpro1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "ecdc/hospital_admissions",
 						"fileSystem": "processed"
 					},
 					"columnDelimiter": ",",
@@ -1172,17 +1106,17 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "ds_hospital_admissions_weekly",
+								"referenceName": "ds_processed_hospital_admissions_weekly",
 								"type": "DatasetReference"
 							},
-							"name": "HospitalAdmissionsWeekly"
+							"name": "HospitalAdmissionsWeeklySink"
 						},
 						{
 							"dataset": {
-								"referenceName": "ds_hospital_admissions_daily",
+								"referenceName": "ds_processed_hospital_admissions_daily",
 								"type": "DatasetReference"
 							},
-							"name": "HospitalAdmissionsDaily"
+							"name": "HospitalAdmissionsDailySink"
 						}
 					],
 					"transformations": [
@@ -1336,8 +1270,8 @@
 						"          ecdc_year_week,",
 						"          week_start_date,",
 						"          week_end_date,",
-						"          Weekly_new_hospital_admissions_per_100k_count = {Weekly new hospital admissions per 100k_count},",
-						"          Weekly_new_ICU_admissions_per_100k_count = {Weekly new ICU admissions per 100k_count},",
+						"          new_hospital_occupancy_count = {Weekly new hospital admissions per 100k_count},",
+						"          new_ICU_occupancy_count = {Weekly new ICU admissions per 100k_count},",
 						"          source",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
@@ -1348,24 +1282,14 @@
 						"          country_code_3_digit,",
 						"          population,",
 						"          reported_date,",
-						"          Daily_hospital_occupancy_count = {Daily hospital occupancy_count},",
-						"          Daily_ICU_occupancy_count = {Daily ICU occupancy_count},",
+						"          hospital_occupancy_count = {Daily hospital occupancy_count},",
+						"          ICU_occupancy_count = {Daily ICU occupancy_count},",
 						"          source",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> SelectDailyForSink",
 						"SelectWeeklyForSink sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     input(",
-						"          country as string,",
-						"          country_code_2_digit as string,",
-						"          country_code_3_digit as string,",
-						"          population as string,",
-						"          cases_count as string,",
-						"          deaths_count as string,",
-						"          reported_date as string,",
-						"          source as string",
-						"     ),",
 						"     partitionFileNames:['hospital_admissions_weekly.csv'],",
 						"     truncate: true,",
 						"     umask: 0022,",
@@ -1373,19 +1297,9 @@
 						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     partitionBy('hash', 1)) ~> HospitalAdmissionsWeekly",
+						"     partitionBy('hash', 1)) ~> HospitalAdmissionsWeeklySink",
 						"SelectDailyForSink sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     input(",
-						"          country as string,",
-						"          country_code_2_digit as string,",
-						"          country_code_3_digit as string,",
-						"          population as string,",
-						"          cases_count as string,",
-						"          deaths_count as string,",
-						"          reported_date as string,",
-						"          source as string",
-						"     ),",
 						"     partitionFileNames:['hospital_admissions_daily.csv'],",
 						"     truncate: true,",
 						"     umask: 0022,",
@@ -1393,7 +1307,7 @@
 						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     partitionBy('hash', 1)) ~> HospitalAdmissionsDaily"
+						"     partitionBy('hash', 1)) ~> HospitalAdmissionsDailySink"
 					]
 				}
 			},
@@ -1401,8 +1315,8 @@
 				"[concat(variables('factoryId'), '/datasets/ds_raw_hospital_admissions')]",
 				"[concat(variables('factoryId'), '/datasets/ds_country_lookup')]",
 				"[concat(variables('factoryId'), '/datasets/ds_dim_date_lookup')]",
-				"[concat(variables('factoryId'), '/datasets/ds_hospital_admissions_weekly')]",
-				"[concat(variables('factoryId'), '/datasets/ds_hospital_admissions_daily')]"
+				"[concat(variables('factoryId'), '/datasets/ds_processed_hospital_admissions_weekly')]",
+				"[concat(variables('factoryId'), '/datasets/ds_processed_hospital_admissions_daily')]"
 			]
 		},
 		{

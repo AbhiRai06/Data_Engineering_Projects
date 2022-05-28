@@ -43,8 +43,8 @@
 									"HospitalAdmissionsSource": {},
 									"CountrySource": {},
 									"DimDateSource": {},
-									"HospitalAdmissionsWeekly": {},
-									"HospitalAdmissionsDaily": {}
+									"HospitalAdmissionsWeeklySink": {},
+									"HospitalAdmissionsDailySink": {}
 								}
 							},
 							"staging": {},
