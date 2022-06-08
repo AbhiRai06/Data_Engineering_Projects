@@ -5,11 +5,20 @@
 		"factoryName": {
 			"value": "covid-reporting-by-abhi"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
 		"ls_ablob_covidreportingpro_connectionString": {
 			"value": ""
 		},
 		"ls_adls_covidreportingpro1_accountKey": {
 			"value": ""
+		},
+		"ls_db_covid_cluster_accessToken": {
+			"value": ""
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://github.com"
 		},
 		"ls_adls_covidreportingpro1_properties_typeProperties_url": {
 			"value": "https://covidreportingpro1.dfs.core.windows.net"

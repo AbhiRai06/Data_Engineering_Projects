@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "covid-reporting-by-abhi"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
 		"ls_ablob_covidreportingpro_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_ablob_covidreportingpro'"
@@ -14,6 +18,14 @@
 		"ls_adls_covidreportingpro1_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adls_covidreportingpro1'"
+		},
+		"ls_db_covid_cluster_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_db_covid_cluster'"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://github.com"
 		},
 		"ls_adls_covidreportingpro1_properties_typeProperties_url": {
 			"type": "string",
@@ -54,11 +66,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
 					"ls_ablob_covidreportingpro_connectionString": {
 						"value": "[parameters('ls_ablob_covidreportingpro_connectionString')]"
 					},
 					"ls_adls_covidreportingpro1_accountKey": {
 						"value": "[parameters('ls_adls_covidreportingpro1_accountKey')]"
+					},
+					"ls_db_covid_cluster_accessToken": {
+						"value": "[parameters('ls_db_covid_cluster_accessToken')]"
+					},
+					"HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
 					},
 					"ls_adls_covidreportingpro1_properties_typeProperties_url": {
 						"value": "[parameters('ls_adls_covidreportingpro1_properties_typeProperties_url')]"
